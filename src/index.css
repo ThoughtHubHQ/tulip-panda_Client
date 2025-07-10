@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ 
+}
+
+/* font-family: "Poppins", sans-serif; */
+/* font-family: "Playfair Display", serif; */
+
+
+/* Navbar CSS */
+.navbar{
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+
+.nav-link{
+  font-weight: 300 !important;
+}
+
+.active{
+  border-bottom: 2px solid black;
+}
+
+.navbar-brand{
+  font-weight: 700;
+  font-family: 'roboto', sans-serif;
+  letter-spacing: 3px;
+}
+
+.footer{
+  color: white;
+  padding: 25px;
+  background: 1f2a3d;
+  background: -webkit-linear-gradient(to right, #434343,#000000);
+  background: linear-gradient(to right, #434343,#000000);
+}
+
+.footer a{
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+
+.footer a:hover{
+  color: gray;
+  border-bottom: 1px solid gray;
+}
+
+.pnf{
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pnf-title{
+  font-size: 100px;
+  font-weight: 700;
+}
+
+.pnf-heading{
+  font-weight: normal;
+}
+
+.pnf-btn{
+  color: black;
+  border: 1px solid black;
+  text-decoration: none;
+  padding:10px;
+  margin-top: 10px;
+}
+.pnf-btn:hover{
+background-color: black;
+color: white;
+}
+
+
+.product-link{
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.cardImg{
+  height: 150px;
+  object-fit:contain;
+}
+
+/* breadcrumbs */
+.breadcrumbs {
+  max-width: 1200px;
+  margin: 20px auto;
+}
+.breadcrumbs > *{
+  display: inline-block;
+  margin-right: 10px;
+}
+.breadcrumbs .crumb:after {
+  content: '/';
+  margin-left: 3px;
+}
+.breadcrumbs .crumb:last-child:after {
+  display: none;
+}
+
+.imgFit{
+  object-fit:fill;
+}
+
+.imgCover{
+  width: 100%;
+  margin-top: -20px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.catagory-btn:hover{
+  background-color: #00984a;
+}
+
+.catagory-link{
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+
+.catagory-link:hover{
+ color: white;
+}
+
+.floating-checkout-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.drop-in{
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.justify-text{
+  text-align: justify;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+.sliding{
+  animation-direction: alternate;
+}
+
+.card-footer{
+  border: none;
+  background-color: transparent;
+}
