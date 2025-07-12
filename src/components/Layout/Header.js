@@ -24,8 +24,8 @@ const Header = () => {
             <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
                 <div className="container-fluid">
                     <Link to="/" className="navbar-brand">
-                        <img src="images/tulippandalogo.png"
-                            alt="Logo-ICON" style={{ height: '40px', marginRight: '10px' }} />
+                        <img src="/images/tulippandalogo.png"
+                            alt="logo" style={{ height: '40px', marginRight: '10px' }} />
                         Tulip Panda
                     </Link>
                     <button className="navbar-toggler ms-auto mx-2 my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
