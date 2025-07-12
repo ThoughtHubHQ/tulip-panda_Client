@@ -19,7 +19,7 @@ const Dashboard = () => {
                             <h5>Name: {auth?.user?.name}</h5>
                             <p>Email: <i>{auth?.user?.email}</i></p>
                             <p>Phone: {auth?.user?.phone}</p>
-                            <p>Address: {auth?.user?.address}</p>
+                            <p>Address: <a href={auth?.user?.address} target='_blank' rel="noopener noreferrer">{auth?.user?.address}</a></p>
                             <p><b>Token:</b> {auth?.token}</p>
                         </div>
                     </div>

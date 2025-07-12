@@ -16,6 +16,32 @@ const Profile = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+    const [location, setLocation] = useState({
+        latitude: null,
+        longitude: null,
+        error: null,
+    });
+
+const getLocation = () => {
+    try {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                setLocation({ latitude, longitude, error: null });
+                const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                setAddress(mapLink);
+            },
+            (error) => {
+                setLocation({ latitude: null, longitude: null, error: error.message });
+                toast.error("Failed to get location: " + error.message);
+            }
+        );
+    } catch (error) {
+        setLocation({ latitude: null, longitude: null, error: error.message });
+        toast.error("Failed to get location: " + error.message);
+    }
+};
 
     //get user data
     useEffect(() => {
@@ -81,6 +107,7 @@ const Profile = () => {
                                     <button type="submit" className="btn btn-primary">Update</button>
                                 </div>
                             </form>
+                            <button onClick={getLocation} className='btn btn-secondary mt-2'>Use Current Location</button>
                         </div>
                     </div>
                 </div>
