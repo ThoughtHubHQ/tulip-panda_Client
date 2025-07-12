@@ -7,7 +7,7 @@ const Footer = () => {
             <div className='container my-5'>
                 <div className="row">
                     <div className="col-md-4">
-                        <h4>We are: </h4>
+                        <h4>About </h4>
                         <p className='d-flex'>
                             <Link to="/about">About Us</Link>
 
@@ -44,10 +44,20 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <h4 className='text-center'>All Rights Reserved &copy; MR GROUP - TULIP GARDEN RESTRURENT </h4>
+            <h4
+                className='text-center'>
+                All Rights Reserved &copy; MR GROUP -
+                <a
+                    href="https://tgr.mrg.com.bd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'inherit' }}>
+                    TULIP GARDEN RESTAURANT
+                </a>
+            </h4>
 
             {/* Support credit */}
-            <div className="text-center text-md-end mt-5">
+            <div className="text-center text-md-end mt-4">
                 <span className='text-end'>
                     Supported by
                     <a

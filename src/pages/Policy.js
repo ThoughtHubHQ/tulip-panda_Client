@@ -4,7 +4,7 @@ import GoBackButton from '../components/GoBackButton';
 
 const Policy = () => {
     return (
-        <Layout title={"Privacy Policy - EComWebApp"}>
+        <Layout title={"Privacy Policy - Tulip Panda"}>
             <div className="container">
                 <div className="row">
                     <div className="d-flex align-items-center">

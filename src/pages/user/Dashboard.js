@@ -7,7 +7,7 @@ import FloatingCartButton from '../../components/FloatingCartButton';
 const Dashboard = () => {
     const [auth] = useAuth();
     return (
-        <Layout title={"Dashboard - Ecom_App"}>
+        <Layout title={"Dashboard - Tulip Panda"}>
             <div className="container-fluid mt-3 p-3">
                 <div className="row">
                     <div className="col-md-3">

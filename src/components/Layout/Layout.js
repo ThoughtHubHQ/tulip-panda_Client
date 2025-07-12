@@ -31,9 +31,9 @@ const Layout = ({ children, title, description, keywords, author }) => {
 };
 
 Layout.defaultProps = {
-    title: "Tulippanda ECom_WebApp - Shop Now",
-    description: "MERN Stack based E-commerce Project",
-    keywords: "MERN, React, Node, MongoDB, Express, Nest, Next",
-    author: "Minar & ashikurrb"
+    title: "TulipPanda - Shop Now",
+    description: "Tulip Panda is a delivery service of Tulip Garden resturant",
+    keywords: "food, delivery, online, order, parcel, tulippanda, tulipgarden",
+    author: "Minar & @ashikurrb"
 }
 export default Layout;

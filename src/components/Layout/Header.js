@@ -23,7 +23,11 @@ const Header = () => {
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
                 <div className="container-fluid">
-                    <Link to="/" className="navbar-brand"> <GiShoppingCart /> Tulip Panda </Link>
+                    <Link to="/" className="navbar-brand">
+                        <img src="images/tulippandalogo.png"
+                            alt="Logo-ICON" style={{ height: '40px', marginRight: '10px' }} />
+                        Tulip Panda
+                    </Link>
                     <button className="navbar-toggler ms-auto mx-2 my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
                     </button>
@@ -53,7 +57,7 @@ const Header = () => {
                             {!auth.user ? (<>
                                 <li className="nav-item">
                                     <NavLink to="/register" className="nav-link">
-                                    Register</NavLink>
+                                        Register</NavLink>
                                 </li>
                                 <li className="nav-item">
                                     <NavLink to="/login" className="nav-link">  <i class="fa-solid fa-right-to-bracket"></i> Login</NavLink>

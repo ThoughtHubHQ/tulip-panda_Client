@@ -115,7 +115,7 @@ const HomePage = () => {
     }
 
     return (
-        <Layout title={"All Products - Best offers"}>
+        <Layout title={"Tulip Panda - Online Food Delivery"}>
             <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-inner">
                     <div className="carousel-item active">

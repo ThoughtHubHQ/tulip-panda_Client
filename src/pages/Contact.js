@@ -5,7 +5,7 @@ import GoBackButton from '../components/GoBackButton';
 
 const Contact = () => {
     return (
-        <Layout title={"Contact Us - EComWebApp"}>
+        <Layout title={"Contact Us - Tulip Panda"}>
             <div className="container">
             <div className="row">
             <div className="d-flex align-items-center">
