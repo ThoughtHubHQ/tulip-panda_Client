@@ -84,7 +84,7 @@ const Users = () => {
                                                             href={auth?.user?.address}
                                                             target='_blank'
                                                             rel="noopener noreferrer">
-                                                            Open in MAP
+                                                            {auth?.user?.address}
                                                         </a>
                                                     </td>
                                                     <td>{u.answer}</td>

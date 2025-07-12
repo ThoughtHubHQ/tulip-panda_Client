@@ -190,16 +190,16 @@ const CartPage = () => {
                             <h6>Total Quantity: {cart.length}</h6>
                             {auth?.user?.address ? (
                                 <div className="mb-3">
-                                    <p> 
-                                       <span className='fw-bold'>Current Address:</span> 
-                                       <span>
-                                        <a className='m-2'
-                                            href={auth?.user?.address}
-                                            target='_blank'
-                                            rel="noopener noreferrer">
-                                            Open in MAP
-                                        </a>
-                                       </span>
+                                    <p>
+                                        <span className='fw-bold'>Current Address:</span>
+                                        <span>
+                                            <a className='m-2'
+                                                href={auth?.user?.address}
+                                                target='_blank'
+                                                rel="noopener noreferrer">
+                                                {auth?.user?.address}
+                                            </a>
+                                        </span>
                                     </p>
                                     <button className='btn btn-warning' onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
                                 </div>
