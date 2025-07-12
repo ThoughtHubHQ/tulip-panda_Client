@@ -197,7 +197,7 @@ const CartPage = () => {
                                             href={auth?.user?.address}
                                             target='_blank'
                                             rel="noopener noreferrer">
-                                            {auth?.user?.address}
+                                            Open in MAP
                                         </a>
                                        </span>
                                     </p>

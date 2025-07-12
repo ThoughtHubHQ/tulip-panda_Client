@@ -6,6 +6,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
 import '../../style/AuthStyle.css';
+import Spinner from '../../components/Spinner';
 
 const Profile = () => {
     //context
@@ -16,32 +17,37 @@ const Profile = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+    const [locationLoading, setLocationLoading] = useState(false);
+    const [updateLoading, setUpdateLoading] = useState(false);
     const [location, setLocation] = useState({
         latitude: null,
         longitude: null,
         error: null,
     });
 
-const getLocation = () => {
-    try {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
+    const getLocation = (e) => {
+        e.preventDefault();
+        setLocationLoading(true);
+        try {
+            navigator.geolocation.getCurrentPosition((position) => {
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
                 setLocation({ latitude, longitude, error: null });
                 const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
                 setAddress(mapLink);
+                setLocationLoading(false);
             },
-            (error) => {
-                setLocation({ latitude: null, longitude: null, error: error.message });
-                toast.error("Failed to get location: " + error.message);
-            }
-        );
-    } catch (error) {
-        setLocation({ latitude: null, longitude: null, error: error.message });
-        toast.error("Failed to get location: " + error.message);
-    }
-};
+                (error) => {
+                    setLocation({ latitude: null, longitude: null, error: error.message });
+                    toast.error("Please enable your location access.");
+                    setLocationLoading(false);
+                }
+            );
+        } catch (error) {
+            toast.error("Failed: " + error.message);
+            setLocationLoading(false);
+        }
+    };
 
     //get user data
     useEffect(() => {
@@ -54,6 +60,7 @@ const getLocation = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setUpdateLoading(true);
         try {
             const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/auth/profile-update`, {
                 name,
@@ -64,18 +71,21 @@ const getLocation = () => {
             });
             if (data?.error) {
                 toast.error(data?.error)
+                setUpdateLoading(false);
             } else {
                 setAuth({ ...auth, user: data?.updatedUser })
                 let ls = Cookies.get("auth");
                 ls = JSON.parse(ls)
                 ls.user = data.updatedUser
                 Cookies.set("auth", JSON.stringify(ls));
-                toast.success(data?.message)
+                toast.success(data?.message);
+                setUpdateLoading(false);
             }
         }
         catch (error) {
             console.log(error);
-            toast.error('Something went wrong')
+            toast.error('Something went wrong');
+            setUpdateLoading(false);
         }
     }
 
@@ -104,10 +114,14 @@ const getLocation = () => {
                                     <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='Address' required />
                                 </div>
                                 <div className="text-center">
-                                    <button type="submit" className="btn btn-primary">Update</button>
+                                    <button type="submit" className="btn btn-primary">
+                                        {updateLoading ? <Spinner /> : <span>Update</span>}
+                                    </button>
                                 </div>
                             </form>
-                            <button onClick={getLocation} className='btn btn-secondary mt-2'>Use Current Location</button>
+                            <button onClick={getLocation} className='btn btn-secondary mt-2'>
+                                {locationLoading ? <Spinner /> : <span>Use Current Location</span>}
+                            </button>
                         </div>
                     </div>
                 </div>

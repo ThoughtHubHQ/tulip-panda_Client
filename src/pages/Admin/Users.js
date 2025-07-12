@@ -79,7 +79,14 @@ const Users = () => {
                                                     <td>{u.name}</td>
                                                     <td>{u.email}</td>
                                                     <td>{u.phone}</td>
-                                                    <td>{u.address}</td>
+                                                    <td>
+                                                        <a className='m-2'
+                                                            href={auth?.user?.address}
+                                                            target='_blank'
+                                                            rel="noopener noreferrer">
+                                                            Open in MAP
+                                                        </a>
+                                                    </td>
                                                     <td>{u.answer}</td>
                                                     <td > {
                                                         u.role === 0 ? <span class="badge text-bg-primary">User</span> : u.role === 1 ? <span class="badge text-bg-warning">Admin</span> : <span class="badge text-bg-danger">{u.role}</span>
