@@ -190,7 +190,14 @@ const CartPage = () => {
                             <h6>Total Quantity: {cart.length}</h6>
                             {auth?.user?.address ? (
                                 <div className="mb-3">
-                                    <p className='fw-bold'>Current Address: {auth?.user?.address}</p>
+                                    <p className='fw-bold'>Current Address:
+                                        <a
+                                            href={auth?.user?.address}
+                                            target='_blank'
+                                            rel="noopener noreferrer">
+                                            {auth?.user?.address}
+                                        </a>
+                                    </p>
                                     <button className='btn btn-warning' onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
                                 </div>
                             ) : (

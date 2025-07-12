@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { useCart } from '../components/context/cart';
 import GoBackButton from '../components/GoBackButton';
 import Spinner from '../components/Spinner';
+import FloatingCartButton from '../components/FloatingCartButton';
 
 const CatagoryProduct = () => {
     const params = useParams();
@@ -70,6 +71,7 @@ const CatagoryProduct = () => {
                     </div>
                 </div>}
             </div>
+            <FloatingCartButton/>
         </Layout>
     );
 };
