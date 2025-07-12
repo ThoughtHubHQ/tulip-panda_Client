@@ -76,15 +76,15 @@ const Users = () => {
                                             return (
                                                 <tr>
                                                     <th scope='row'>{i + 1}</th>
-                                                    <td>{u.name}</td>
-                                                    <td>{u.email}</td>
-                                                    <td>{u.phone}</td>
+                                                    <td>{u?.name}</td>
+                                                    <td>{u?.email}</td>
+                                                    <td>{u?.phone}</td>
                                                     <td>
                                                         <a className='m-2'
-                                                            href={auth?.user?.address}
+                                                            href={u?.address}
                                                             target='_blank'
                                                             rel="noopener noreferrer">
-                                                            {auth?.user?.address}
+                                                            {u?.address}
                                                         </a>
                                                     </td>
                                                     <td>{u.answer}</td>
