@@ -10,9 +10,9 @@ const Footer = () => {
                         <h4>We are: </h4>
                         <p className='d-flex'>
                             <Link to="/about">About Us</Link>
-                            
+
                             <Link to="/contact">Contact</Link>
-                            
+
                             <Link to="/policy">Privacy Policy</Link>
                         </p>
                     </div>
@@ -35,17 +35,34 @@ const Footer = () => {
                     </div>
                     <div className="col-md-4">
                         <h4>We Accept:</h4>
-                           <div>
+                        <div>
                             <i className="h2 mx-2 fa-solid fa-money-bill-wave" title="Cash" />
-                              <i className="h2 mx-2 fa-brands fa-cc-visa" />
-                               <i className="h2 mx-2 fa-brands fa-cc-mastercard" />
-                               
-                            </div>
+                            <i className="h2 mx-2 fa-brands fa-cc-visa" />
+                            <i className="h2 mx-2 fa-brands fa-cc-mastercard" />
+
+                        </div>
                     </div>
                 </div>
             </div>
             <h4 className='text-center'>All Rights Reserved &copy; MR GROUP - TULIP GARDEN RESTRURENT </h4>
-           
+
+            {/* Support credit */}
+            <div className="text-center text-md-end mt-5">
+                <span className='text-end'>
+                    Supported by
+                    <a
+                        target='_blank'
+                        href="https://thoughthub.notion.site"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            style={{ height: '24px', marginRight: "5px", verticalAlign: 'middle' }}
+                            src="/images/thoughthub-logo.png"
+                            alt="Logo" />
+                        <b>ThoughtHub</b>
+                    </a>
+                </span>
+            </div>
         </div>
     );
 };
