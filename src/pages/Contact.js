@@ -17,7 +17,16 @@ const Contact = () => {
                             </div>
                         </div>
                 <div className="col-md-5">
-                    <img className='my-2' src="https://raw.githubusercontent.com/techinfo-youtube/ecommerce-app-2023/main/client/public/images/contactus.jpeg" alt="contact-us" style={{ width: "100%" }} />
+                    <iframe
+  className='my-2'
+  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d186874.1319388622!2d90.397548!3d24.567655!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375643017b21d3e5%3A0x7235c56ed9afaf50!2sTulip%20Garden%20Restaurant!5e1!3m2!1sen!2sbd!4v1752465631797!5m2!1sen!2sbd"
+  width="100%"
+  height="200"
+  style={{ border: 0 }}
+  allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
+  title="Google Map Location"
+/>
+
                 </div>
                 <div className="col-md-7">
   <h1 className="bg-dark my-2 p-2 text-white text-center"> CONTACT DETAILS </h1>
@@ -38,13 +47,14 @@ const Contact = () => {
       01633-077777
     </a>
   </p>
-
-  <p className="mt-3">
-    <BiSupport /> : 
-    <a href="tel:000000000000" className="text-decoration-none text-dark ms-2">
-      0000-0000-0000 (Help Line)
-    </a>
-  </p>
+{/* 
+<p className="mt-3">
+  <BiSupport /> : 
+  <a href="tel:000000000000" className="text-decoration-none text-dark ms-2">
+    0000-0000-0000 (Help Line)
+  </a>
+</p> 
+*/}
 </div>
 
             </div>

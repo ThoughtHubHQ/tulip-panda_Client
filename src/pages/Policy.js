@@ -22,7 +22,22 @@ const Policy = () => {
                             <img className='p-2' src="https://media.istockphoto.com/id/1279830303/vector/privacy-policy-concept-contract-with-protection-information-shield-and-magnifier-icons-cyber.jpg?s=612x612&w=0&k=20&c=B-ogjHis02gZOGgTbzbwINjxk9tQflNZ6SSswkDygrg=" alt="about" style={{ width: "100%" }} />
                         </div>
                         <div className="col-md-7">
-                            <p className="justify-text">text</p>
+                            <p className="justify-text">At Tulip Panda, your privacy matters to us. We collect essential information such as your name, phone number, address, and location details to ensure smooth delivery of your favorite dishes from Tulip Garden Restaurant directly to your doorstep in Mymensingh.
+
+We use this information to:
+
+Process and manage your food orders
+
+Enhance your customer experience
+
+Send you promotional offers (only with your consent)
+
+We never sell your personal data. Your information is shared only with trusted delivery partners to fulfill your orders securely.
+
+Our systems use secure technology to protect your data, and we use cookies solely to improve your browsing experience. You can manage your preferences or opt out at any time.
+
+For any privacy-related queries, or to request updates or deletion of your data, please contact us at:
+📧 <a href="mailto:tulippanda@mrg.com.bd">tulippanda@mrg.com.bd</a></p>
                         </div>
                     </div>
                 </div>
