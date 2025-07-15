@@ -30,10 +30,10 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/product/:catagory/:slug' element={<ProductDetails />} />
+        <Route path='catagories/:catagory/:slug' element={<ProductDetails />} />
         <Route path='/catagories' element={<Catagories />} />
         <Route path='/cart' element={<CartPage />} />
-        <Route path='/catagory/:slug' element={<CatagoryProduct />} />
+        <Route path='/catagories/:slug' element={<CatagoryProduct />} />
         <Route path='/search' element={<Search />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />

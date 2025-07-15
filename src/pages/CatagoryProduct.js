@@ -58,7 +58,7 @@ const CatagoryProduct = () => {
                                     <h5 className="card-title">{p?.name}</h5>
                                     <p className="card-text">{p?.description.substring(0, 30)}</p>
                                     <h6 className="card-text">Price: {p?.price} BDT</h6>
-                                    <button className='btn btn-primary m-1' onClick={() => navigate(`/product/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
+                                    <button className='btn btn-primary m-1' onClick={() => navigate(`/catagories/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
                                     <button className='btn btn-secondary m-1'
                                         onClick={() => {
                                             setCart([...cart, p])

@@ -28,7 +28,7 @@ const Catagories = () => {
                         <div className="d-flex flex-wrap justify-content-center">
                             {catagories.map(c => (
                                 <div className="col-md-2 card catagory-btn border-dark p-3 m-2" key={c?._id}>
-                                    <Link className='catagory-link' to={`/catagory/${c?.slug}`}>{c?.name}</Link>
+                                    <Link className='catagory-link' to={`/catagories/${c?.slug}`}>{c?.name}</Link>
                                 </div>
                             ))}
                         </div>

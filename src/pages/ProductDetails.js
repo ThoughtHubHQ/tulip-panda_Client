@@ -99,7 +99,7 @@ const ProductDetails = () => {
                                         <h6 className="card-text">Price: {p.price} BDT</h6>
                                     </div>
                                     <div className='card-footer'>
-                                        <button className='btn btn-primary m-1' onClick={() => navigate(`/product/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
+                                        <button className='btn btn-primary m-1' onClick={() => navigate(`/catagories/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
                                         <button className='btn btn-secondary m-1'
                                             onClick={() => {
                                                 setCart([...cart, p])
