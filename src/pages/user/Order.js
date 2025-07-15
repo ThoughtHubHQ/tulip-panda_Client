@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 import Spinner from '../../components/Spinner';
 
 const Order = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const [orders, setOrders] = useState([]);
   const [spinnerLoading, setSpinnerLoading] = useState(true);
 
   const getOrders = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/orders`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/order/user-order`);
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -62,8 +62,6 @@ const Order = () => {
                             <th scope="col">Status</th>
                             <th scope="col">Updated</th>
                             <th scope="col">Created</th>
-                            <th scope="col">Payment</th>
-                            <th scope="col">Trx ID</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Quantity</th>
                           </tr>
@@ -74,12 +72,8 @@ const Order = () => {
                             <td>{o.status === 'Canceled'?<span className='text-danger fw-bold'>Canceled</span>:o.status}</td>
                             <td>{o.createdAt !== o.updatedAt ? moment(o?.updatedAt).fromNow() : "--"}</td>
                             <td>{moment(o?.createdAt).format('lll')}</td>
-                            <td className={o.payment.success ? "text-success" : "text-danger fw-bold"}>
-                              {o.payment.success ? "Success" : "Failed"}
-                            </td>
-                            <td><b>{o.payment?.transaction?.id}</b></td>
-                            <td>Tk. {o.payment?.transaction?.amount}</td>
-                            <td>{o.products.length}</td>
+                            <td>BDT {o?.totalAmount}</td>
+                            <td>{o?.products?.length}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -88,9 +82,9 @@ const Order = () => {
                           {uniqueProducts.map((p) => (
                             <div className="row m-2 p-3 card flex-row" key={p._id}>
                               <div className="col-md-4">
-                                <Link to={`/product/${p.slug}`}>
+                                <Link to={`/catagories/${p?.catagory?.slug}/${p.slug}`}>
                                   <img
-                                    src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                                    src={p?.photo}
                                     className="imgFit card-img-top"
                                     alt={p.name}
                                     width={"100px"}
@@ -104,6 +98,7 @@ const Order = () => {
                                 </p>
                                 <p>{p.description.substring(0, 30)}</p>
                                 <p>Price : {p.price} BDT</p>
+                                <p>Catagory : {p.catagory.name} </p>
                               </div>
                             </div>
                           ))}

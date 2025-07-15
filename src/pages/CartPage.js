@@ -3,16 +3,13 @@ import Layout from '../components/Layout/Layout';
 import { useCart } from '../components/context/cart';
 import { useAuth } from '../components/context/auth';
 import { Link, useNavigate } from 'react-router-dom';
-import DropIn from "braintree-web-drop-in-react";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import GoBackButton from '../components/GoBackButton';
 
 const CartPage = () => {
-    const [auth, setAuth] = useAuth();
+    const [auth] = useAuth();
     const [cart, setCart] = useCart();
-    const [clientToken, setClientToken] = useState("");
-    const [instance, setInstance] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -75,34 +72,21 @@ const CartPage = () => {
             };
         });
 
-    //get token for authentication
-    const getToken = async () => {
-        try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/braintree/token`);
-            setClientToken(data?.clientToken);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        getToken();
-    }, [auth?.token]);
 
     //payment handling 
-    const handlePayment = async () => {
+    const handleOrder = async () => {
         try {
+            let answer = window.confirm("Are you sure you want to place this order?");
+            if (!answer) return;
             setLoading(true);
-            const { nonce } = await instance.requestPaymentMethod();
-            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/braintree/payment`, {
-                nonce, cart,
+            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/order/create-order`, {
+                cart,
             });
-            console.log(nonce);
             setLoading(false);
             localStorage.removeItem('cart');
             setCart([]);
             navigate("/dashboard/user/orders");
-            toast.success("Payment Completed Successfully");
+            toast.success("Order Placed Successfully");
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -154,16 +138,16 @@ const CartPage = () => {
                                                 <tr>
                                                     <td>{i + 1}</td>
                                                     <td>
-                                                        <Link to={`/product/${p.slug}`}>
-                                                            <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="imgFit img-fluid" alt={p.name} width={"50px"} height={"100px"} />
+                                                        <Link to={`/catagories/${p?.catagory?.slug}/${p.slug}`}>
+                                                            <img src={p?.photo} className="imgFit img-fluid" alt={p.name} width={"50px"} height={"100px"} />
                                                         </Link>
                                                     </td>
-                                                    <td>{p.name}</td>
-                                                    <td>{p.price} BDT</td>
+                                                    <td>{p?.name}</td>
+                                                    <td>{p?.price} BDT</td>
                                                     <td>
                                                         <div className="d-flex">
                                                             <button className='btn btn-danger' onClick={() => decreaseCartItem(p._id)}>-</button>
-                                                            <span className='mx-2 border border-warning p-2 rounded'><b>{p.count}</b></span>
+                                                            <span className='mx-2 border border-warning p-2 rounded'><b>{p?.count}</b></span>
                                                             <button className='btn btn-secondary' onClick={() => increaseCartItem(p)}>+</button>
                                                         </div>
                                                     </td>
@@ -214,18 +198,12 @@ const CartPage = () => {
                             )}
 
                             <div className="mt-2">
-                                {!clientToken || !cart.length ? ("") : (
+                                {!cart.length ? ("") : (
                                     <div className='drop-in'>
-                                        <DropIn
-                                            options={{
-                                                authorization: clientToken,
-                                                paypal: { flow: "vault" },
-                                            }}
-                                            onInstance={(instance) => setInstance(instance)}
-                                        />
+                                        <h4>Delivery Charge: 60 BDT</h4>
                                         <div className="text-center">
-                                            <button className='btn btn-warning mb-3' onClick={handlePayment} disabled={loading || !instance || !auth?.user?.address}>
-                                                {loading ? "Processing" : "Make Payment"}
+                                            <button className='btn btn-warning mb-3' onClick={handleOrder} disabled={loading || !auth?.user?.address}>
+                                                {loading ? "Processing" : "Place Order"}
                                             </button>
                                         </div>
                                     </div>

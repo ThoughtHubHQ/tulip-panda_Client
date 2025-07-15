@@ -13,13 +13,13 @@ const { Option } = Select;
 
 const AdminOrder = () => {
     const [status, setStatus] = useState(["Not Process", "Processing", "Shipped", "Delivered", "Canceled"]);
-    const [auth, setAuth] = useAuth();
+    const [auth] = useAuth();
     const [orders, setOrders] = useState([]);
     const [spinnerLoading, setSpinnerLoading] = useState(true);
 
     const getOrders = async () => {
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/auth/all-orders`)
+            const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/order/all-orders`)
             setOrders(data)
         } catch (error) {
             console.log(error);
@@ -35,8 +35,9 @@ const AdminOrder = () => {
     //order status change
     const handleChange = async (orderId, value) => {
         try {
-            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/auth/order-status/${orderId}`, { status: value })
+            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/order/order-status/${orderId}`, { status: value })
             getOrders();
+            toast.success("Order status updated successfully");
         } catch (error) {
             console.error(error);
         }
@@ -47,7 +48,7 @@ const AdminOrder = () => {
         try {
             let answer = window.confirm("Are you sure want to delete this product?")
             if (!answer) return;
-            const { data } = await axios.delete(`${process.env.REACT_APP_API}/api/v1/auth/delete-order/${oId}`);
+            const { data } = await axios.delete(`${process.env.REACT_APP_API}/api/v1/order/delete-order/${oId}`);
             if (data.success) {
                 toast.success(`Order deleted successfully`);
                 getOrders();
@@ -91,8 +92,6 @@ const AdminOrder = () => {
                                                         <th scope="col">Buyer</th>
                                                         <th scope="col">Updated</th>
                                                         <th scope="col">Created</th>
-                                                        <th scope="col">Payment</th>
-                                                        <th scope="col">Trx Id</th>
                                                         <th scope="col">Amount</th>
                                                         <th scope="col">Quantity</th>
                                                         <th scope="col">Action</th>
@@ -117,11 +116,7 @@ const AdminOrder = () => {
                                                         </td>
                                                         <td>{o.createdAt !== o.updatedAt ? moment(o?.updatedAt).fromNow() : "--"}</td>
                                                         <td>{moment(o?.createdAt).format('lll')}</td>
-                                                        <td className={o?.payment.success ? "text-success" : "text-danger fw-bold"}>
-                                                            {o?.payment.success ? "Success" : "Failed"}
-                                                        </td>
-                                                        <td><b>{o?.payment?.transaction?.id}</b></td>
-                                                        <td>Tk. {o?.payment?.transaction?.amount} </td>
+                                                        <td>BDT {o?.totalAmount} </td>
                                                         <td>
                                                             <span class="badge rounded-pill text-bg-warning fs-6">{o?.products?.length}</span>
                                                         </td>
@@ -152,9 +147,9 @@ const AdminOrder = () => {
                                                                 <tr>
                                                                     <td>{i + 1}</td>
                                                                     <td>
-                                                                        <Link to={`/product/${p.slug}`}>
+                                                                        <Link to={`/catagories/${p?.catagory?.slug}/${p.slug}`}>
                                                                             <img
-                                                                                src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                                                                                src={p?.photo}
                                                                                 className="img-thumbnail"
                                                                                 alt={p.name}
                                                                                 width="100px"

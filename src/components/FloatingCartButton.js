@@ -128,12 +128,12 @@ const FloatingCartButton = () => {
                                                             <tr key={p._id}>
                                                                 <td>{i + 1}</td>
                                                                 <td>
-                                                                    <Link to={`/product/${p.slug}`}>
-                                                                        <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="imgFit img-fluid" alt={p.name} width={"50px"} height={"100px"} data-bs-dismiss="modal" />
+                                                                    <Link to={`/catagories/${p?.catagory?.slug}/${p.slug}`}>
+                                                                        <img src={p?.photo} className="imgFit img-fluid" alt={p.name} width={"50px"} height={"100px"} data-bs-dismiss="modal" />
                                                                     </Link>
                                                                 </td>
-                                                                <td>{p.name}</td>
-                                                                <td>৳ {p.price}</td>
+                                                                <td>{p?.name}</td>
+                                                                <td>৳ {p?.price}</td>
                                                                 <td>
                                                                     <div className="d-flex">
                                                                         <button className='btn btn-danger' onClick={() => decreaseCartItem(p._id)}>-</button>
