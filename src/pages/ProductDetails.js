@@ -68,17 +68,17 @@ const ProductDetails = () => {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h2>{product.name}</h2>
-                                <p className="card-text">{product.description}</p>
+                                <h2>{product?.name}</h2>
+                                <p className="card-text">{product?.description}</p>
                                 <p className="card-text">Category: {product?.catagory?.name}</p>
-                                <h6 className="card-text">Price: {product.price} BDT</h6>
-                                <p className="card-text">Stock: {product.quantity} unit</p>
-                                <p className="card-text">Free Shipping: {product.shipping ? "Yes" : "No"} </p>
+                                <h6 className="card-text">Price: {product?.price} BDT</h6>
+                                <p className="card-text">Stock: {product?.quantity} unit</p>
+                                <p className="card-text">Free Shipping: {product?.shipping ? "Yes" : "No"} </p>
                             </div>
                             <button className='btn btn-secondary my-3'
                                 onClick={() => {
                                     setCart([...cart, product])
-                                    toast.success(`${product.name} added to Cart`)
+                                    toast.success(`${product?.name} added to Cart`)
                                 }}>
                                 <i className="fa-solid fa-plus"></i>  Add Cart </button>
                         </div>
@@ -99,7 +99,7 @@ const ProductDetails = () => {
                                         <h6 className="card-text">Price: {p.price} BDT</h6>
                                     </div>
                                     <div className='card-footer'>
-                                        <button className='btn btn-primary m-1' onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
+                                        <button className='btn btn-primary m-1' onClick={() => navigate(`/product/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
                                         <button className='btn btn-secondary m-1'
                                             onClick={() => {
                                                 setCart([...cart, p])

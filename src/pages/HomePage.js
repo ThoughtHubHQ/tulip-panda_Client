@@ -153,7 +153,7 @@ const HomePage = () => {
                                 {catagories?.map(c => (
                                     <Checkbox
                                         key={c._id}
-                                        onChange={(e) => handleFilter(e.target.checked, c._id)}
+                                        onChange={(e) => handleFilter(e.target.checked, c?._id)}
                                     >
                                         {c.name}
                                     </Checkbox>
@@ -187,16 +187,16 @@ const HomePage = () => {
                                     <div className="card m-2" style={{ width: '18rem' }} key={p._id}>
                                         <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="cardImg card-img-top p-2" alt={p.name} />
                                         <div className="card-body">
-                                            <h5 className="card-title">{p.name}</h5>
-                                            <p className="card-text">{p.description.substring(0, 50)}...</p>
+                                            <h5 className="card-title">{p?.name}</h5>
+                                            <p className="card-text">{p?.description?.substring(0, 50)}...</p>
                                             <h6 className="card-text">Price: {p.price} BDT</h6>
                                         </div>
                                         <div className='card-footer'>
-                                        <button className='btn btn-primary m-1' onClick={() => navigate(`/product/${p.slug}`)}>More Details</button>
+                                        <button className='btn btn-primary m-1' onClick={() => navigate(`/product/${p?.catagory?.slug}/${p.slug}`)}>More Details</button>
                                         <button className='btn btn-secondary m-1'
                                             onClick={() => {
                                                 setCart([...cart, p])
-                                                toast.success(`${p.name} Added to Cart`)
+                                                toast.success(`${p?.name} Added to Cart`)
                                             }}>
                                             <i className="fa-solid fa-plus"></i>  Add Cart </button>
                                     </div>
