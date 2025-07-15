@@ -57,7 +57,7 @@ const Footer = () => {
             </h4>
 
             {/* Support credit */}
-            <div className="text-center text-md-end mt-4">
+            <div className="text-center text-md-start mt-4">
                 <span className='text-end'>
                     Supported by
                     <a

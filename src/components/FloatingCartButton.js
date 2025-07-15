@@ -76,7 +76,7 @@ const FloatingCartButton = () => {
                     data-bs-toggle="modal" data-bs-target="#exampleModal"
                 > <i className="fa-solid fa-cart-shopping"></i> {totalPrice()}
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {cart.length}
+                        {cart?.length}
                     </span>
                 </button>
             )}
