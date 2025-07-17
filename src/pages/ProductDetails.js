@@ -8,6 +8,7 @@ import GoBackButton from '../components/GoBackButton';
 import FloatingCartButton from '../components/FloatingCartButton';
 import Spinner from '../components/Spinner';
 import { useAuth } from '../components/context/auth';
+import { Image } from 'antd';
 
 const ProductDetails = () => {
     const [auth] = useAuth();
@@ -58,19 +59,20 @@ const ProductDetails = () => {
                         <GoBackButton />
                     </div>
                     <div className="col">
-                        <h4 className="mb-0 me-5 p-3 text-center">Food Details</h4>
+                        <h4 className="mt-3 mb-0 me-5 p-3 text-center">Food Details</h4>
                     </div>
                 </div>
                 {spinnerLoading ?
                     <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: "50vh" }}>
                         <Spinner />
-                    </div> : <div className="row mt-5">
+                    </div> :
+                    <div className="row mt-3 d-flex justify-content-center align-items-center">
                         <div className="col-md-4">
-                            <img src={product?.photo} className="card-img-top cardImg" alt={product?.name} />
+                            <Image src={product?.photo} className="card-img-top cardImg" alt={product?.name} />
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <span className='justify-content-between d-flex align-items-center'>
+                                <span className='justify-content-between d-flex align-items-center mt-3'>
                                     <h2>{product?.name}</h2>
                                     {
                                         auth?.user?.role === 1 && (
@@ -114,7 +116,7 @@ const ProductDetails = () => {
                                         <p className="card-text">{p.description.substring(0, 50)}...</p>
                                         <h6 className="card-text">Price: {p.price} BDT</h6>
                                     </div>
-                                    <div className='card-footer'>
+                                    <div className='card-footer d-flex justify-content-center'>
                                         <button className='btn btn-primary m-1' onClick={() => navigate(`/catagories/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
                                         <button className='btn btn-secondary m-1'
                                             onClick={() => {

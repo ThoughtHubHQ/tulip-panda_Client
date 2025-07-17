@@ -122,10 +122,10 @@ const HomePage = () => {
                         <img src="images\Tulip Panda Facebook Cover.png" className="d-block w-100" alt="..." />
                     </div>
                     <div className="carousel-item">
-                        <img src="imagelink.com" className="d-block w-100" alt="..." />
+                        <img src="images\Tulip Panda Facebook Cover.png" className="d-block w-100" alt="..." />
                     </div>
                     <div className="carousel-item">
-                        <img src="imagelink.com" className="d-block w-100" alt="..." />
+                        <img src="images\Tulip Panda Facebook Cover.png" className="d-block w-100" alt="..." />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -182,7 +182,7 @@ const HomePage = () => {
                         </h3>
                         {spinnerLoading ? <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: "20vh" }}><Spinner /></div> : <div>
 
-                            <div className="d-flex flex-wrap justify-content-center">
+                            <div className="d-flex flex-wrap justify-content-center product-container">
                                 {products?.map(p => (
                                     <div className="card m-2" style={{ width: '18rem' }} key={p._id}>
                                         <img src={p?.photo} className="cardImg card-img-top p-2" alt={p.name} />
@@ -191,15 +191,15 @@ const HomePage = () => {
                                             <p className="card-text">{p?.description?.substring(0, 50)}...</p>
                                             <h6 className="card-text">Price: {p.price} BDT</h6>
                                         </div>
-                                        <div className='card-footer'>
-                                        <button className='btn btn-primary m-1' onClick={() => navigate(`/catagories/${p?.catagory?.slug}/${p.slug}`)}>More Details</button>
-                                        <button className='btn btn-secondary m-1'
-                                            onClick={() => {
-                                                setCart([...cart, p])
-                                                toast.success(`${p?.name} Added to Cart`)
-                                            }}>
-                                            <i className="fa-solid fa-plus"></i>  Add Cart </button>
-                                    </div>
+                                        <div className='card-footer d-flex justify-content-center'>
+                                            <button className='btn btn-primary m-1' onClick={() => navigate(`/catagories/${p?.catagory?.slug}/${p.slug}`)}>More Details</button>
+                                            <button className='btn btn-secondary m-1'
+                                                onClick={() => {
+                                                    setCart([...cart, p])
+                                                    toast.success(`${p?.name} Added to Cart`)
+                                                }}>
+                                                <i className="fa-solid fa-plus"></i>  Add Cart </button>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -220,7 +220,7 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-            <FloatingCartButton/>
+            <FloatingCartButton />
         </Layout >
     );
 };

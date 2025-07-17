@@ -171,3 +171,13 @@ table {
   border: none;
   background-color: transparent;
 }
+
+.product-container {
+  max-height: 550px;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+
+.product-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

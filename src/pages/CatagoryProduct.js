@@ -49,29 +49,31 @@ const CatagoryProduct = () => {
                     <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: "50vh" }}>
                         <Spinner />
                     </div> : <div className="row">
-                    <h6 className='text-center'>{products?.length} products found</h6>
-                    <div className="d-flex flex-wrap justify-content-center">
-                        {products?.map(p => (
-                            <div className="card m-2" style={{ width: '18rem' }} key={p._id}>
-                                <img src={p?.photo} className="cardImg card-img-top p-2" alt={p?.name} />
-                                <div className="card-body">
-                                    <h5 className="card-title">{p?.name}</h5>
-                                    <p className="card-text">{p?.description.substring(0, 30)}</p>
-                                    <h6 className="card-text">Price: {p?.price} BDT</h6>
-                                    <button className='btn btn-primary m-1' onClick={() => navigate(`/catagories/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
-                                    <button className='btn btn-secondary m-1'
-                                        onClick={() => {
-                                            setCart([...cart, p])
-                                            toast.success(`${p?.name} Added to Cart`)
-                                        }}>
-                                        <i className="fa-solid fa-plus"></i>  Add Cart </button>
+                        <h6 className='text-center'>{products?.length} products found</h6>
+                        <div className="d-flex flex-wrap justify-content-center">
+                            {products?.map(p => (
+                                <div className="card m-2" style={{ width: '18rem' }} key={p._id}>
+                                    <img src={p?.photo} className="cardImg card-img-top p-2" alt={p?.name} />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{p?.name}</h5>
+                                        <p className="card-text">{p?.description.substring(0, 30)}</p>
+                                        <h6 className="card-text">Price: {p?.price} BDT</h6>
+                                        <div>
+                                            <button className='btn btn-primary m-1' onClick={() => navigate(`/catagories/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
+                                            <button className='btn btn-secondary m-1'
+                                                onClick={() => {
+                                                    setCart([...cart, p])
+                                                    toast.success(`${p?.name} Added to Cart`)
+                                                }}>
+                                                <i className="fa-solid fa-plus"></i>  Add Cart </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>}
+                            ))}
+                        </div>
+                    </div>}
             </div>
-            <FloatingCartButton/>
+            <FloatingCartButton />
         </Layout>
     );
 };
