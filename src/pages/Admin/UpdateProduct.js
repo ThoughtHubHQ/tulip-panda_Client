@@ -137,17 +137,21 @@ const UpdateProduct = () => {
                                     </div>
                                 ) : (
                                     <div className="text-center ">
-                                        <img src={productPhoto} alt='products-img' height={'200px'} className='border border-primary rounded img img-responsive' />
+                                        <Image src={productPhoto} alt='products-img' height={'200px'} className='border border-primary rounded img img-responsive' />
                                     </div>
                                 )}
-                                <div className="d-flex justify-content-center">
-                                    <div className='mt-3 fw-bold'>
-                                        <span> Size: {`${(photo.size / 1048576).toFixed(2)} MB`}</span>
-                                        <span>{
-                                            photo.size > 2000000 ? <p className='text-danger'>Image size should be less than 2 MB</p> : null
-                                        }</span>
+                                {photo ? (
+                                    <div className="d-flex justify-content-center">
+                                        <div className='mt-3 fw-bold'>
+                                            <span> Size: {`${(photo.size / 1048576).toFixed(2)} MB`}</span>
+                                            <span>{
+                                                photo.size > 2000000 ? <p className='text-danger'>Image size should be less than 2 MB</p> : null
+                                            }</span>
+                                        </div>
                                     </div>
-                                </div>
+                                ) :
+                                    (<></>)
+                                }
                             </div>
                             <div className="mb-3">
                                 <label className="btn btn-outline-secondary col-md-12">
