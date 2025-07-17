@@ -178,7 +178,7 @@ const HomePage = () => {
                     </div>
                     <div className="col-md-9">
                         <h3 className="text-center my-3">
-                            All Products
+                            Available Foods
                         </h3>
                         {spinnerLoading ? <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: "20vh" }}><Spinner /></div> : <div>
 

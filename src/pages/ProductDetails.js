@@ -58,7 +58,7 @@ const ProductDetails = () => {
                         <GoBackButton />
                     </div>
                     <div className="col">
-                        <h4 className="mb-0 me-5 p-3 text-center">Product Details</h4>
+                        <h4 className="mb-0 me-5 p-3 text-center">Food Details</h4>
                     </div>
                 </div>
                 {spinnerLoading ?
@@ -101,7 +101,7 @@ const ProductDetails = () => {
                     </div>}
                 <hr />
                 <div className="row">
-                    <h3 className='text-center'>Similar Products</h3>
+                    <h3 className='text-center mt-4 mb-3'>You can also have</h3>
                     {spinnerLoading ? <div className='my-5'><Spinner /></div> : <>
                         {relatedProducts?.length < 1 && (<p className="text-center">No Similar Product Found</p>)}
                         <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
