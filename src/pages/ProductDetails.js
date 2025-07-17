@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useCart } from '../components/context/cart';
 import GoBackButton from '../components/GoBackButton';
 import FloatingCartButton from '../components/FloatingCartButton';
 import Spinner from '../components/Spinner';
+import { useAuth } from '../components/context/auth';
 
 const ProductDetails = () => {
+    const [auth] = useAuth();
     const navigate = useNavigate();
     const params = useParams();
     const [cart, setCart] = useCart();
@@ -64,11 +66,25 @@ const ProductDetails = () => {
                         <Spinner />
                     </div> : <div className="row mt-5">
                         <div className="col-md-4">
-                            <img src={product?.photo} className="card-img-top cardImg" alt={product.name} />
+                            <img src={product?.photo} className="card-img-top cardImg" alt={product?.name} />
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h2>{product?.name}</h2>
+                                <span className='justify-content-between d-flex align-items-center'>
+                                    <h2>{product?.name}</h2>
+                                    {
+                                        auth?.user?.role === 1 && (
+                                            <Link
+                                                key={product._id}
+                                                to={`/dashboard/admin/product/${product?.slug}`}
+                                                className="product-link">
+                                                <button className='btn btn-primary mb-3'>
+                                                    <i className="fa-solid fa-pen-to-square" /> Edit
+                                                </button>
+                                            </Link>
+                                        )
+                                    }
+                                </span>
                                 <p className="card-text">{product?.description}</p>
                                 <p className="card-text">Category: {product?.catagory?.name}</p>
                                 <h6 className="card-text">Price: {product?.price} BDT</h6>
