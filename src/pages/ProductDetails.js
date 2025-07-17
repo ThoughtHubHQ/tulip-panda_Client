@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useCart } from '../components/context/cart';
 import GoBackButton from '../components/GoBackButton';
 import FloatingCartButton from '../components/FloatingCartButton';
 import Spinner from '../components/Spinner';
+import { useAuth } from '../components/context/auth';
+import { Image } from 'antd';
 
 const ProductDetails = () => {
+    const [auth] = useAuth();
     const navigate = useNavigate();
     const params = useParams();
     const [cart, setCart] = useCart();
@@ -62,13 +65,28 @@ const ProductDetails = () => {
                 {spinnerLoading ?
                     <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: "50vh" }}>
                         <Spinner />
-                    </div> : <div className="row mt-5">
+                    </div> :
+                    <div className="row mt-3 d-flex justify-content-center align-items-center">
                         <div className="col-md-4">
-                            <img src={product?.photo} className="card-img-top cardImg" alt={product.name} />
+                            <Image src={product?.photo} className="card-img-top cardImg" alt={product?.name} />
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h2>{product?.name}</h2>
+                                <span className='justify-content-between d-flex align-items-center mt-3'>
+                                    <h2>{product?.name}</h2>
+                                    {
+                                        auth?.user?.role === 1 && (
+                                            <Link
+                                                key={product._id}
+                                                to={`/dashboard/admin/product/${product?.slug}`}
+                                                className="product-link">
+                                                <button className='btn btn-primary mb-3'>
+                                                    <i className="fa-solid fa-pen-to-square" /> Edit
+                                                </button>
+                                            </Link>
+                                        )
+                                    }
+                                </span>
                                 <p className="card-text">{product?.description}</p>
                         
                                 <h6 className="card-text">Price: {product?.price} BDT + Delivery Fee</h6>
@@ -98,7 +116,7 @@ const ProductDetails = () => {
                                         <p className="card-text">{p.description.substring(0, 50)}...</p>
                                         <h6 className="card-text">Price: {p.price} BDT</h6>
                                     </div>
-                                    <div className='card-footer'>
+                                    <div className='card-footer d-flex justify-content-center'>
                                         <button className='btn btn-primary m-1' onClick={() => navigate(`/catagories/${p?.catagory?.slug}/${p?.slug}`)}>More Details</button>
                                         <button className='btn btn-secondary m-1'
                                             onClick={() => {
