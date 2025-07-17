@@ -169,7 +169,7 @@ const CartPage = () => {
                         <div className="card p-4 mb-3">
                             <h3 className='text-center'>Cart Summary</h3>
                             <hr />
-                            <h4>Total: {totalPrice()}</h4>
+                            <h4>Total: {totalPrice()}+Delivery </h4>
                             <h6>Total Item: {uniqueCartItems.length}</h6>
                             <h6>Total Quantity: {cart.length}</h6>
                             {auth?.user?.address ? (
@@ -185,7 +185,7 @@ const CartPage = () => {
                                             </a>
                                         </span>
                                     </p>
-                                    <button className='btn btn-warning' onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
+                                    <button className="btn btn-success" onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
                                 </div>
                             ) : (
                                 <div className="mb-3">
@@ -199,15 +199,28 @@ const CartPage = () => {
 
                             <div className="mt-2">
                                 {!cart.length ? ("") : (
-                                    <div className='drop-in'>
-                                        <h4>Delivery Charge: 60 BDT</h4>
-                                        <div className="text-center">
-                                            <button className='btn btn-warning mb-3' onClick={handleOrder} disabled={loading || !auth?.user?.address}>
-                                                {loading ? "Processing" : "Place Order"}
-                                            </button>
-                                        </div>
-                                    </div>
-                                )}
+  <div className='drop-in border rounded p-4 my-3 bg-white shadow-sm'>
+    <h4 className="text-dark mb-3">
+      Payment Method: Cash on Delivery
+    </h4>
+
+    <div className="text-center">
+      <button
+        className='btn btn-warning px-4 py-2 fw-semibold'
+        onClick={handleOrder}
+        disabled={loading || !auth?.user?.address}
+      >
+        {loading ? (
+          <>
+            <span className="spinner-border spinner-border-sm me-2"></span>
+            Processing...
+          </>
+        ) : "Place Order"}
+      </button>
+    </div>
+  </div>
+)}
+
                             </div>
                         </div>
                     </div>

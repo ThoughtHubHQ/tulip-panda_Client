@@ -89,7 +89,7 @@ const AdminOrder = () => {
                                                     <tr>
                                                         <th scope="col">#</th>
                                                         <th scope="col">Status</th>
-                                                        <th scope="col">Buyer</th>
+                                                        <th scope="col">Client</th>
                                                         <th scope="col">Updated</th>
                                                         <th scope="col">Created</th>
                                                         <th scope="col">Amount</th>

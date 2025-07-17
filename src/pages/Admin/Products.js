@@ -72,7 +72,7 @@ const Products = () => {
                         <AdminMenu></AdminMenu>
                     </div>
                     <div className="col-md-9">
-                        <h2 className="text-center my-3">All Products ({total})</h2>
+                        <h2 className="text-center my-3">All Items ({total})</h2>
                         {spinnerLoading ? <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: "50vh" }}><Spinner /></div> : <>
                             <div className="d-flex flex-wrap justify-content-center">
                                 {products?.map(p => (

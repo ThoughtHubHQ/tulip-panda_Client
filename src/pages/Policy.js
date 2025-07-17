@@ -22,8 +22,7 @@ const Policy = () => {
                             <img className='p-2' src="https://media.istockphoto.com/id/1279830303/vector/privacy-policy-concept-contract-with-protection-information-shield-and-magnifier-icons-cyber.jpg?s=612x612&w=0&k=20&c=B-ogjHis02gZOGgTbzbwINjxk9tQflNZ6SSswkDygrg=" alt="about" style={{ width: "100%" }} />
                         </div>
                         <div className="col-md-7">
-                            <p className="justify-text">At Tulip Panda, your privacy matters to us. We collect essential information such as your name, phone number, address, and location details to ensure smooth delivery of your favorite dishes from Tulip Garden Restaurant directly to your doorstep in Mymensingh.
-
+                            <p className="justify-text">At Tulip Panda, your privacy matters to us. We collect essential information such as your name, phone number, address, and location details to ensure smooth delivery of your favorite dishes from Tulip Garden Restaurant directly to your doorstep in Trishal. Delivery fee is charged based on time of day, distance, and surge conditions. 
 We use this information to:
 
 Process and manage your food orders

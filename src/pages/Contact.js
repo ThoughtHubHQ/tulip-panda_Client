@@ -46,15 +46,14 @@ const Contact = () => {
     <a href="tel:+8801633077777" className="text-decoration-none text-dark ms-2">
       01633-077777
     </a>
-  </p>
-{/* 
+  </p> 
 <p className="mt-3">
   <BiSupport /> : 
-  <a href="tel:000000000000" className="text-decoration-none text-dark ms-2">
-    0000-0000-0000 (Help Line)
+  <a href="tel:+8801633088888" className="text-decoration-none text-dark ms-2">
+    01633-088888
   </a>
 </p> 
-*/}
+
 </div>
 
             </div>
