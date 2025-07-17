@@ -37,8 +37,8 @@ const Footer = () => {
                         <h4>We Accept:</h4>
                         <div>
                             <i className="h2 mx-2 fa-solid fa-money-bill-wave" title="Cash" />
-                            <i className="h2 mx-2 fa-brands fa-cc-visa" />
-                            <i className="h2 mx-2 fa-brands fa-cc-mastercard" />
+                            <i className="h2 mx-2 fa-brands fa-cc-visa" title="VISA" />
+                            <i className="h2 mx-2 fa-brands fa-cc-mastercard" title="Mastercard" />
 
                         </div>
                     </div>
@@ -56,23 +56,6 @@ const Footer = () => {
                 </a>
             </h4>
 
-            {/* Support credit */}
-            <div className="text-center text-md-start mt-4">
-                <span className='text-end'>
-                    Supported by
-                    <a
-                        target='_blank'
-                        href="https://thoughthub.notion.site"
-                        rel="noopener noreferrer"
-                    >
-                        <img
-                            style={{ height: '24px', marginRight: "5px", verticalAlign: 'middle' }}
-                            src="/images/thoughthub-logo.png"
-                            alt="Logo" />
-                        <b>ThoughtHub</b>
-                    </a>
-                </span>
-            </div>
         </div>
     );
 };

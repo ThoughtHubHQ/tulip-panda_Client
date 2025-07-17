@@ -112,16 +112,20 @@ const Profile = () => {
                                 </div>
                                 <div className="mb-3">
                                     <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='Address' required />
+                                
+                                <button onClick={getLocation} className='btn btn-secondary btn-lg'>
+                                {locationLoading ? <Spinner /> : <span>𖦏 Get Location</span>}
+                                </button>
+
                                 </div>
+
                                 <div className="text-center">
-                                    <button type="submit" className="btn btn-primary">
-                                        {updateLoading ? <Spinner /> : <span>Update</span>}
+                                    <button type="submit" className="btn btn-success">
+                                        {updateLoading ? <Spinner /> : <span>Save</span>}
                                     </button>
                                 </div>
                             </form>
-                            <button onClick={getLocation} className='btn btn-secondary mt-2'>
-                                {locationLoading ? <Spinner /> : <span>Use Current Location</span>}
-                            </button>
+                            
                         </div>
                     </div>
                 </div>

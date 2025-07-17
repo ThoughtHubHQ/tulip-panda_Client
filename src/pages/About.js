@@ -27,7 +27,7 @@ const About = () => {
         <div className="col-md-6">
           <h4>Who We Are</h4>
           <p>
-            <strong>Tulip Panda</strong> is Mymensingh’s trusted online food delivery service, connecting you with your favorite meals from the renowned <strong>Tulip Garden Restaurant</strong>. Whether it’s lunch, dinner, or a late-night craving — we’ve got you covered.
+            <strong>Tulip Panda</strong> is Trishal’s trusted online food delivery service, connecting you with your favorite meals from the renowned <strong>Tulip Garden Restaurant</strong>. Whether it’s lunch, dinner, or a late-night craving — we’ve got you covered.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ const About = () => {
           <h4>Why Choose Us?</h4>
           <ul className="list-unstyled">
             <li>✅ Authentic food, made fresh to order</li>
-            <li>✅ Fast and reliable delivery across Mymensingh</li>
+            <li>✅ Fast and reliable delivery across Trishal</li>
             <li>✅ Hygienic packaging and safe food handling</li>
             <li>✅ Easy-to-use online ordering</li>
             <li>✅ Friendly customer support</li>

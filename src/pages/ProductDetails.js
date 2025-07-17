@@ -56,7 +56,7 @@ const ProductDetails = () => {
                         <GoBackButton />
                     </div>
                     <div className="col">
-                        <h4 className="mb-0 me-5 p-3 text-center">Product Details</h4>
+                        <h4 className="mb-0 me-5 p-3 text-center">Food Details</h4>
                     </div>
                 </div>
                 {spinnerLoading ?
@@ -70,10 +70,10 @@ const ProductDetails = () => {
                             <div className="card-body">
                                 <h2>{product?.name}</h2>
                                 <p className="card-text">{product?.description}</p>
-                                <p className="card-text">Category: {product?.catagory?.name}</p>
-                                <h6 className="card-text">Price: {product?.price} BDT</h6>
-                                <p className="card-text">Stock: {product?.quantity} unit</p>
-                                <p className="card-text">Free Shipping: {product?.shipping ? "Yes" : "No"} </p>
+                        
+                                <h6 className="card-text">Price: {product?.price} BDT + Delivery Fee</h6>
+                                <p className="card-text">Delivery fee is based on distance, time of day, and conditions.</p>
+                             
                             </div>
                             <button className='btn btn-secondary my-3'
                                 onClick={() => {
@@ -85,7 +85,7 @@ const ProductDetails = () => {
                     </div>}
                 <hr />
                 <div className="row">
-                    <h3 className='text-center'>Similar Products</h3>
+                    <h3 className='text-center'>Some Other Food You Might Enjoy!</h3>
                     {spinnerLoading ? <div className='my-5'><Spinner /></div> : <>
                         {relatedProducts?.length < 1 && (<p className="text-center">No Similar Product Found</p>)}
                         <div className="d-flex flex-wrap justify-content-md-start justify-content-center">
