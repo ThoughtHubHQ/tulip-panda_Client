@@ -131,7 +131,7 @@ const Profile = () => {
                                         onChange={(e) => setAddress(e.target.value)}
                                         required
                                     />
-                                    <span className='text-center text-danger'> Click on <b><AimOutlined /></b>  to get your current location URL </span>
+                                    <span className='text-center text-danger fw-bold'> Click on <b><AimOutlined /></b>  to get your current location URL </span>
                                 </div>
 
                                 <div className="text-center">
