@@ -32,7 +32,7 @@
 
 .form-container form button {
   border: 1px solid black;
-  border-radius: 0;
+  border-radius: 3;
   background-color: #000;
   color: white;
   font-weight: bold;

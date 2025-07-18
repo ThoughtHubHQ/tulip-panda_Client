@@ -7,6 +7,9 @@ import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
 import '../../style/AuthStyle.css';
 import Spinner from '../../components/Spinner';
+import { Input, Spin } from 'antd';
+import { AimOutlined } from '@ant-design/icons';
+
 
 const Profile = () => {
     //context
@@ -97,26 +100,38 @@ const Profile = () => {
                     <div className="col-md-9">
                         <div className="form-container ">
                             <form onSubmit={handleSubmit}>
-                                <h4 className="title"><i class="fa-solid fa-pen-to-square"></i> Update Your Profile</h4>
+                                <h4 className="title mb-4"><i classname="fa-solid fa-pen-to-square" /> Update Your Profile</h4>
                                 <div className="mb-3">
-                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="exampleInputName" placeholder='Name' required />
+                                    <Input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="exampleInputName" placeholder='Name' required />
                                 </div>
                                 <div className="mb-3 " >
-                                    <input type="email" readonly value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="exampleInputEmail" placeholder='Email' required disabled />
+                                    <Input type="email" readonly value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="exampleInputEmail" placeholder='Email' required disabled />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" placeholder='Password' required />
+                                    <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" placeholder='Password' required />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="exampleInputPhone" placeholder='Phone Number' required />
+                                    <Input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="exampleInputPhone" placeholder='Phone Number' required />
                                 </div>
-                                <div className="mb-3">
-                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='Address' required />
-                                
-                                <button onClick={getLocation} className='btn btn-secondary btn-lg'>
-                                {locationLoading ? <Spinner /> : <span>𖦏 Get Location</span>}
-                                </button>
-
+                                <div className="mb-3 text-center">
+                                    <Input
+                                        suffix={
+                                            (
+                                                locationLoading ? <Spin size="small" />
+                                                    : <span onClick={getLocation} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                        <AimOutlined />
+                                                    </span>
+                                            )
+                                        }
+                                        type="text"
+                                        placeholder='Transaction ID'
+                                        size="large"
+                                        className='mb-3 w-100'
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                        required
+                                    />
+                                    <span className='text-center text-danger'> Click on <b><AimOutlined /></b>  to get your current location URL </span>
                                 </div>
 
                                 <div className="text-center">
@@ -125,7 +140,7 @@ const Profile = () => {
                                     </button>
                                 </div>
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
