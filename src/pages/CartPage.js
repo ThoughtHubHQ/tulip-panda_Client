@@ -169,7 +169,7 @@ const CartPage = () => {
                         <div className="card p-4 mb-3">
                             <h3 className='text-center'>Cart Summary</h3>
                             <hr />
-                            <h4>Total: {totalPrice()}+Delivery </h4>
+                            <h4>Total: {totalPrice()} + Delivery </h4>
                             <h6>Total Item: {uniqueCartItems.length}</h6>
                             <h6>Total Quantity: {cart.length}</h6>
                             {auth?.user?.address ? (
