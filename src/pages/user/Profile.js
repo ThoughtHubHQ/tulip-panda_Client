@@ -117,7 +117,7 @@ const Profile = () => {
                                     <textarea
                                         rows={3}
                                         cols={30} 
-                                        placeholder="Full address"
+                                        placeholder="Full Address"
                                         className="form-control w-100"
                                         value={address}
                                         onChange={(e) => setAddress(e.target.value)}
