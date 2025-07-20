@@ -7,9 +7,7 @@ import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
 import '../../style/AuthStyle.css';
 import Spinner from '../../components/Spinner';
-import { Input, Spin } from 'antd';
-import { AimOutlined } from '@ant-design/icons';
-
+import { Input } from 'antd';
 
 const Profile = () => {
     //context
@@ -20,37 +18,7 @@ const Profile = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
-    const [locationLoading, setLocationLoading] = useState(false);
     const [updateLoading, setUpdateLoading] = useState(false);
-    const [location, setLocation] = useState({
-        latitude: null,
-        longitude: null,
-        error: null,
-    });
-
-    const getLocation = (e) => {
-        e.preventDefault();
-        setLocationLoading(true);
-        try {
-            navigator.geolocation.getCurrentPosition((position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-                setLocation({ latitude, longitude, error: null });
-                const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
-                setAddress(mapLink);
-                setLocationLoading(false);
-            },
-                (error) => {
-                    setLocation({ latitude: null, longitude: null, error: error.message });
-                    toast.error("Please enable your location access.");
-                    setLocationLoading(false);
-                }
-            );
-        } catch (error) {
-            toast.error("Failed: " + error.message);
-            setLocationLoading(false);
-        }
-    };
 
     //get user data
     useEffect(() => {
@@ -124,29 +92,6 @@ const Profile = () => {
                                         required
                                     />
                                 </div>
-
-                                {/* Disable for move this portion to order page 
-                                 <div className="mb-3 text-center">
-                                    <Input
-                                        suffix={
-                                            (
-                                                locationLoading ? <Spin size="small" />
-                                                    : <span onClick={getLocation} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-                                                        <AimOutlined />
-                                                    </span>
-                                            )
-                                        }
-                                        type="text"
-                                        placeholder='Transaction ID'
-                                        size="large"
-                                        className='mb-3 w-100'
-                                        value={address}
-                                        onChange={(e) => setAddress(e.target.value)}
-                                        required
-                                    />
-                                    <span className='text-center text-danger fw-bold'> Click on <b><AimOutlined /></b>  to get your current location URL </span>
-                                </div> */}
-
                                 <div className="text-center">
                                     <button type="submit" className="btn btn-success">
                                         {updateLoading ? <Spinner /> : <span>Save</span>}
