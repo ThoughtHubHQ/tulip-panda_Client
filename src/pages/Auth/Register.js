@@ -72,12 +72,12 @@ const Register = () => {
                                 <div className="mb-3">
                                     <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='What is your favorite food?' required />
                                 </div>
-                                <div className="text-center">
+                                <div className="text-center py-4">
                                     <button type="submit" className="btn btn-primary">
-                                        {spinnerLoading ? <Spinner /> : "REGISTER"}
+                                        {spinnerLoading ? <Spinner /> : "Sign Up"}
                                          </button>
                                 </div>
-                                <div className="text-center py-3">Already Registered? <Link to="/login">Log In</Link></div>
+                                <div className="text-center">Already Registered? <Link to="/login">Log In</Link></div>
                             </form>
                         </div>
                     </div>

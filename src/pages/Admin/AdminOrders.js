@@ -60,6 +60,16 @@ const AdminOrder = () => {
         }
     }
 
+    //url checker
+    const isUrl = (str) => {
+        try {
+            new URL(str);
+            return true;
+        } catch {
+            return false;
+        }
+    };
+
     return (
         <Layout title={"Admin - All Orders"}>
             <div className="container-fluid mt-3 p-3">
@@ -90,10 +100,12 @@ const AdminOrder = () => {
                                                         <th scope="col">#</th>
                                                         <th scope="col">Status</th>
                                                         <th scope="col">Client</th>
-                                                        <th scope="col">Updated</th>
-                                                        <th scope="col">Created</th>
+                                                        <th scope="col">Note</th>
+                                                        <th scope="col">Address</th>
                                                         <th scope="col">Amount</th>
                                                         <th scope="col">Quantity</th>
+                                                        <th scope="col">Updated</th>
+                                                        <th scope="col">Created</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -114,12 +126,22 @@ const AdminOrder = () => {
                                                                 o?.buyer ? o?.buyer?.name : <span class="badge text-bg-danger">Deleted User</span>
                                                             }
                                                         </td>
-                                                        <td>{o.createdAt !== o.updatedAt ? moment(o?.updatedAt).fromNow() : "--"}</td>
-                                                        <td>{moment(o?.createdAt).format('lll')}</td>
+                                                        <td>{o?.orderNote === "" ? "---" : o?.orderNote}</td>
+                                                        <td>
+                                                            {isUrl(o?.orderAddress) ? (
+                                                                <a href={o?.orderAddress} target="_blank" rel="noopener noreferrer">
+                                                                    Open Map
+                                                                </a>
+                                                            ) : (
+                                                                o?.orderAddress
+                                                            )}
+                                                        </td>
                                                         <td>BDT {o?.totalAmount} </td>
                                                         <td>
                                                             <span class="badge rounded-pill text-bg-warning fs-6">{o?.products?.length}</span>
                                                         </td>
+                                                        <td>{o.createdAt !== o.updatedAt ? moment(o?.updatedAt).fromNow() : "--"}</td>
+                                                        <td>{moment(o?.createdAt).format('lll')}</td>
                                                         <td>
                                                             <button className="btn btn-danger ms-1 fw-bold" onClick={() => handleDelete(o._id)}><i class="fa-solid fa-trash-can"></i> Delete</button>
                                                         </td>
