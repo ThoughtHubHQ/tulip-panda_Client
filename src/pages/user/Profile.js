@@ -114,6 +114,19 @@ const Profile = () => {
                                     <Input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="exampleInputPhone" placeholder='Phone Number' required />
                                 </div>
                                 <div className="mb-3 text-center">
+                                    <textarea
+                                        rows={3}
+                                        cols={30} 
+                                        placeholder="Full Address"
+                                        className="form-control w-100"
+                                        value={address}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                        required
+                                    />
+                                </div>
+
+                                {/* Disable for move this portion to order page 
+                                 <div className="mb-3 text-center">
                                     <Input
                                         suffix={
                                             (
@@ -132,7 +145,7 @@ const Profile = () => {
                                         required
                                     />
                                     <span className='text-center text-danger fw-bold'> Click on <b><AimOutlined /></b>  to get your current location URL </span>
-                                </div>
+                                </div> */}
 
                                 <div className="text-center">
                                     <button type="submit" className="btn btn-success">
