@@ -30,7 +30,7 @@ const Login = () => {
                     token: res.data.token
                 })
                 // Set login details in cookies
-              Cookies.set("auth", JSON.stringify(res.data), { expires: 7 }); // expires in 7 days
+                Cookies.set("auth", JSON.stringify(res.data), { expires: 7 }); // expires in 7 days
                 navigate(location.state || '/')
             } else {
                 toast.error(res.data.message)
@@ -62,12 +62,13 @@ const Login = () => {
                             <div className="mb-3">
                                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" placeholder='Password' required />
                             </div>
+                            <div className="text-end mb-4"> <Link to="/forgot-password">Forgot Password?</Link></div>
                             <div className="text-center">
-                                <button type="submit" className="btn btn-primary">                                        {spinnerLoading ? <Spinner /> : "Log In"}
+                                <button type="submit" className="btn btn-primary">
+                                    {spinnerLoading ? <Spinner /> : "Log In"}
                                 </button>
                             </div>
-                            <div className="text-center py-3">Forgot Password? <Link to="/forgot-password">Reset Here</Link></div>
-                            <div className="text-center py-3">Don't Have an Account? <Link to="/register">Sign up</Link></div>
+                            <div className="text-center mt-4">Don't Have an Account? <Link to="/register">Sign up</Link></div>
                         </form>
                     </div>
                 </div>
