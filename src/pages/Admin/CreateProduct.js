@@ -75,8 +75,8 @@ const CreateProduct = () => {
                 <div className="row">
                     <div className="col-md-3"><AdminMenu /></div>
                     <div className="col-md-9">
-                        <h3 className='text-center my-2'>Create Product</h3>
-                        <div className="m-1  w-75">
+                        <h3 className='text-center my-4'>Create Product</h3>
+                        <div className="m-1 container">
                             <Select bordered={false}
                                 placeholder="Select a catagory"
                                 size='large'
@@ -102,7 +102,7 @@ const CreateProduct = () => {
                                     </div>
                                 )}
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-3 text-center">
                                 <label className="btn btn-outline-secondary col-md-12">
                                     {photo ? photo.name : "Upload Photo"}
                                     <input
@@ -160,10 +160,9 @@ const CreateProduct = () => {
                                     <Option value="1">Yes</Option>
                                 </Select>
                             </div>
-                            <div className="mb-3 text-center">
-                                {spinnerLoading ? <div className='my-2'><Spinner /> </div> : ""}
-                                <button className="btn btn-warning fw-bold " onClick={handleCreate}>
-                                    Create Product
+                            <div className="text-center">
+                                <button className="btn btn-warning fw-bold mt-3" onClick={handleCreate}>
+                                    {spinnerLoading ? <div className='my-2'><Spinner /> </div> : "Create Product"}
                                 </button>
                             </div>
                         </div>

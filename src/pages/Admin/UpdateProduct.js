@@ -22,6 +22,7 @@ const UpdateProduct = () => {
     const [productPhoto, setProductPhoto] = useState('');
     const [id, setId] = useState("");
     const [spinnerLoading, setSpinnerLoading] = useState(false);
+    const [spinnerDeleteLoading, setSpinnerDeleteLoading] = useState(false);
     const [spinnerProdLoading, setSpinnerProdLoading] = useState(false);
 
     //get single product
@@ -101,11 +102,14 @@ const UpdateProduct = () => {
         try {
             let answer = window.confirm("Are you sure want to delete this product?")
             if (!answer) return;
+            setSpinnerDeleteLoading(true);
             const { data } = await axios.delete(`${process.env.REACT_APP_API}/api/v1/product/delete-product/${id}`);
             toast.success("Product Deleted Successfully");
-            navigate('/dashboard/admin/products')
+            setSpinnerDeleteLoading(false);
+            navigate('/dashboard/admin/products');
         } catch (error) {
             console.log(error);
+            setSpinnerDeleteLoading(false);
             toast.error('Something wrong while delete')
         }
     }
@@ -117,7 +121,7 @@ const UpdateProduct = () => {
                     <div className="col-md-3"><AdminMenu /></div>
                     <div className="col-md-9">
                         <h3 className='text-center my-3'>Update Product</h3>
-                        <div className="m-1 w-75">
+                        <div className="m-1 container">
                             <Select bordered={false}
                                 placeholder="Select a catagory"
                                 size='large'
@@ -212,14 +216,13 @@ const UpdateProduct = () => {
                                     <Option value="1">Yes</Option>
                                 </Select>
                             </div>
-                            {spinnerLoading ? <Spinner /> : ""}
-                            <div className="d-flex">
-                                <button className="btn btn-primary m-1" onClick={handleUpdate}>
-                                    Update Product
+                            <div className="d-flex justify-content-center">
+                                <button className="btn btn-primary m-1 px-3" onClick={handleUpdate}>
+                                    {spinnerLoading ? <Spinner /> : "Update Product"}
                                 </button>
 
                                 <button className="btn btn-danger m-1" onClick={handleDelete}>
-                                    Delete Product
+                                    {spinnerDeleteLoading ? <Spinner /> : "Delete Product"}
                                 </button>
                             </div>
                         </div>
