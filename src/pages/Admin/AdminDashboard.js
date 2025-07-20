@@ -19,7 +19,7 @@ const AdminDashboard = () => {
                                 <div className='card h-100 p-3'>
                                     <h5>Name: {auth?.user?.name}</h5>
                                     <p>Email: {auth?.user?.email}</p>
-                                    <p> Phone: {auth?.user?.phone}</p>
+                                    <p>Phone: {auth?.user?.phone}</p>
                                     <p>Address: {auth?.user?.address}</p>
                                     <h5>Role: {auth?.user?.role}</h5>
                                 </div>
