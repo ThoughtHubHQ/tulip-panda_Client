@@ -6,12 +6,49 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import GoBackButton from '../components/GoBackButton';
+import { Input, Spin } from 'antd';
+import { AimOutlined } from '@ant-design/icons';
+import '../style/AuthStyle.css';
+
 
 const CartPage = () => {
     const [auth] = useAuth();
     const [cart, setCart] = useCart();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const [locationLoading, setLocationLoading] = useState(false);
+    const [orderAddress, setOrderAddress] = useState(auth?.user?.address || '');
+    const [orderNote, setOrderNote] = useState("");
+    const [location, setLocation] = useState({
+        latitude: null,
+        longitude: null,
+        error: null,
+    });
+
+    const getLocation = (e) => {
+        e.preventDefault();
+        setLocationLoading(true);
+        try {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                setLocation({ latitude, longitude, error: null });
+                const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                setOrderAddress(mapLink);
+                setLocationLoading(false);
+            },
+                (error) => {
+                    setLocation({ latitude: null, longitude: null, error: error.message });
+                    toast.error("Please enable your location access.");
+                    setLocationLoading(false);
+                }
+            );
+        } catch (error) {
+            toast.error("Failed: " + error.message);
+            setLocationLoading(false);
+        }
+    };
+
 
     //total pricing
     const totalPrice = () => {
@@ -80,7 +117,7 @@ const CartPage = () => {
             if (!answer) return;
             setLoading(true);
             const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/order/create-order`, {
-                cart,
+                cart, orderAddress, orderNote
             });
             setLoading(false);
             localStorage.removeItem('cart');
@@ -172,20 +209,38 @@ const CartPage = () => {
                             <h4>Total: {totalPrice()} + Delivery </h4>
                             <h6>Total Item: {uniqueCartItems.length}</h6>
                             <h6>Total Quantity: {cart.length}</h6>
+
                             {auth?.user?.address ? (
                                 <div className="mb-3">
-                                    <p>
-                                        <span className='fw-bold'>Current Address:</span>
-                                        <span>
-                                            <a className='m-2'
-                                                href={auth?.user?.address}
-                                                target='_blank'
-                                                rel="noopener noreferrer">
-                                                {auth?.user?.address}
-                                            </a>
-                                        </span>
-                                    </p>
-                                    <button className="btn btn-success" onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
+                                    <h6 className='fw-bold mb-3'>Current Address:</h6>
+                                    <div className="mb-3 text-center">
+                                        <Input
+                                            suffix={
+                                                (
+                                                    locationLoading ? <Spin size="small" />
+                                                        : <span onClick={getLocation} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                            <AimOutlined />
+                                                        </span>
+                                                )
+                                            }
+                                            type="text"
+                                            placeholder='Order Address'
+                                            size="large"
+                                            className='mb-2 w-100'
+                                            value={orderAddress || auth?.user?.address}
+                                            onChange={(e) => setOrderAddress(e.target.value)}
+                                            required
+                                        />
+                                        <span className='text-secondary form-text'> Click <b><AimOutlined /></b>  to set your current location or update <Link to="/dashboard/user/profile">your address</Link> </span>
+                                    </div>
+                                    <div>
+                                        <textarea
+                                            className='form-control'
+                                            rows={3}
+                                            placeholder='Note if you want to add'
+                                            value={orderNote}
+                                            onChange={(e) => setOrderNote(e.target.value)} />
+                                    </div>
                                 </div>
                             ) : (
                                 <div className="mb-3">
@@ -196,30 +251,29 @@ const CartPage = () => {
                                     )}
                                 </div>
                             )}
-
                             <div className="mt-2">
                                 {!cart.length ? ("") : (
-  <div className='drop-in border rounded p-4 my-3 bg-white shadow-sm'>
-    <h4 className="text-dark mb-3">
-      Payment Method: Cash on Delivery
-    </h4>
+                                    <div className='drop-in border rounded p-4 my-3 bg-white shadow-sm'>
+                                        <h4 className="text-dark mb-3">
+                                            Payment Method: Cash on Delivery
+                                        </h4>
 
-    <div className="text-center">
-      <button
-        className='btn btn-warning px-4 py-2 fw-semibold'
-        onClick={handleOrder}
-        disabled={loading || !auth?.user?.address}
-      >
-        {loading ? (
-          <>
-            <span className="spinner-border spinner-border-sm me-2"></span>
-            Processing...
-          </>
-        ) : "Place Order"}
-      </button>
-    </div>
-  </div>
-)}
+                                        <div className="text-center">
+                                            <button
+                                                className='btn btn-warning px-4 py-2 fw-semibold'
+                                                onClick={handleOrder}
+                                                disabled={loading || !auth?.user?.address}
+                                            >
+                                                {loading ? (
+                                                    <>
+                                                        <span className="spinner-border spinner-border-sm me-2"></span>
+                                                        Processing...
+                                                    </>
+                                                ) : "Place Order"}
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
 
                             </div>
                         </div>

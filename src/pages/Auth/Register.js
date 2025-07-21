@@ -53,7 +53,7 @@ const Register = () => {
                         </div>
                         <div className="col-md-6 p-3">
                             <form className='m-lg-5' onSubmit={handleSubmit}>
-                                <h4 className="title"><i class="fa-solid fa-user-plus"></i> &nbsp; REGISTER FORM</h4>
+                                <h4 className="title"><i class="fa-solid fa-user-plus"></i> &nbsp; SIGN UP</h4>
                                 <div className="mb-3">
                                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="exampleInputName" placeholder='Name' required />
                                 </div>
@@ -61,7 +61,7 @@ const Register = () => {
                                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="exampleInputEmail" placeholder='Email' required />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" placeholder='Password' required />
+                                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="exampleInputPassword1" placeholder='Password (Minimum 6 Character)' required />
                                 </div>
                                 <div className="mb-3">
                                     <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="exampleInputPhone" placeholder='Phone Number' required />
@@ -72,12 +72,12 @@ const Register = () => {
                                 <div className="mb-3">
                                     <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='What is your favorite food?' required />
                                 </div>
-                                <div className="text-center">
+                                <div className="text-center py-4">
                                     <button type="submit" className="btn btn-primary">
-                                        {spinnerLoading ? <Spinner /> : "REGISTER"}
+                                        {spinnerLoading ? <Spinner /> : "Sign Up"}
                                          </button>
                                 </div>
-                                <div className="text-center py-3">Already Registered? <Link to="/login">Log In</Link></div>
+                                <div className="text-center">Already Registered? <Link to="/login">Log In</Link></div>
                             </form>
                         </div>
                     </div>
