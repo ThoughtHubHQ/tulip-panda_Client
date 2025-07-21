@@ -212,7 +212,7 @@ const CartPage = () => {
 
                             {auth?.user?.address ? (
                                 <div className="mb-3">
-                                    <h6 className='fw-bold mb-3'>Current Address:</h6>
+                                    <h6 className='fw-bold mb-3'>Delivery Address:</h6>
                                     <div className="mb-3 text-center">
                                         <Input
                                             suffix={
@@ -237,7 +237,7 @@ const CartPage = () => {
                                         <textarea
                                             className='form-control'
                                             rows={3}
-                                            placeholder='Note if you want to add'
+                                            placeholder='Note your details address (Optional)'
                                             value={orderNote}
                                             onChange={(e) => setOrderNote(e.target.value)} />
                                     </div>
