@@ -37,9 +37,14 @@ const AdminOrder = () => {
         try {
             const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/order/order-status/${orderId}`, { status: value })
             getOrders();
-            toast.success("Order status updated successfully");
+            toast.success(
+                <span>
+                    Order <b>{value}</b>
+                </span>
+            );
         } catch (error) {
             console.error(error);
+            toast.error('Something went wrong');
         }
     }
 
