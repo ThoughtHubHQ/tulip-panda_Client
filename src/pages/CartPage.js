@@ -114,6 +114,10 @@ const CartPage = () => {
     //payment handling 
     const handleOrder = async () => {
         try {
+            if (!orderAddress) {
+                toast.error("Please set your order address.");
+                return;
+            }
             let answer = window.confirm("Are you sure you want to place this order?");
             if (!answer) return;
             setLoading(true);
