@@ -6,10 +6,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import GoBackButton from '../components/GoBackButton';
-import { Input, Spin } from 'antd';
+import { Input, Modal, Spin } from 'antd';
 import { AimOutlined } from '@ant-design/icons';
 import '../style/AuthStyle.css';
-
+import AnimatedTickMark from '../components/AnimatedTickMark';
 
 const CartPage = () => {
     const [auth] = useAuth();
@@ -19,6 +19,7 @@ const CartPage = () => {
     const [locationLoading, setLocationLoading] = useState(false);
     const [orderAddress, setOrderAddress] = useState(auth?.user?.address || '');
     const [orderNote, setOrderNote] = useState("");
+    const [visibleOrderModal, setVisibleOrderModal] = useState(false);
     const [location, setLocation] = useState({
         latitude: null,
         longitude: null,
@@ -122,8 +123,7 @@ const CartPage = () => {
             setLoading(false);
             localStorage.removeItem('cart');
             setCart([]);
-            navigate("/dashboard/user/orders");
-            toast.success("Order Placed Successfully");
+            setVisibleOrderModal(true);
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -237,7 +237,7 @@ const CartPage = () => {
                                         <textarea
                                             className='form-control'
                                             rows={3}
-                                            placeholder='Note your details address (Optional)'
+                                            placeholder='Add a message (Optional)'
                                             value={orderNote}
                                             onChange={(e) => setOrderNote(e.target.value)} />
                                     </div>
@@ -280,6 +280,20 @@ const CartPage = () => {
                     </div>
                 </div>
             </div>
+            <Modal centered width={700} onCancel={() => setVisibleOrderModal(false)} open={visibleOrderModal} footer={null}>
+                <h3 className='text-center mb-3'>Your order has been placed successfully</h3>
+                <div className="d-flex justify-content-center align-items-center my-4">
+                    <AnimatedTickMark />
+                </div>
+                <h6 className='text-center my-3'>Please check your email for the purchase details </h6>
+                <div className="text-center">
+                    <button
+                        className="btn btn-primary fw-bold"
+                        onClick={() => navigate("/dashboard/user/orders")}>
+                        View Order
+                    </button>
+                </div>
+            </Modal>
         </Layout >
     );
 };
