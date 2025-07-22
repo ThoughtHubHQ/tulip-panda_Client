@@ -163,9 +163,7 @@ const FloatingCartButton = () => {
                                         <h4>Total: {totalPrice()}+Delivery </h4>
                                         <h6>Total Item: {uniqueCartItems.length}</h6>
                                         <h6>Total Quantity: {cart.length}</h6>
-                                        <h6>Address: {auth.user ? <a href={auth?.user?.address} target='_blank' rel="noopener noreferrer">
-                                            {auth?.user?.address}
-                                        </a> : <span className='text text-danger'>Login to see or update address</span>}</h6>
+                                        <h6>Address: {auth.user ? auth?.user?.address : <span className='text text-danger'>Login to see or update address</span>}</h6>
                                     </div>
                                 </div>
                             </div>

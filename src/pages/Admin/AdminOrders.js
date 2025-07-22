@@ -17,8 +17,8 @@ const AdminOrder = () => {
     const [orders, setOrders] = useState([]);
     const [spinnerLoading, setSpinnerLoading] = useState(true);
     const [statusUpdateLoading, setStatusUpdateLoading] = useState(null);
-    
-    
+
+
     //get all orders
     const getOrders = async () => {
         try {
@@ -113,6 +113,7 @@ const AdminOrder = () => {
                                                         <th scope="col">Client</th>
                                                         <th scope="col">Note</th>
                                                         <th scope="col">Address</th>
+                                                        <th scope="col">Phone</th>
                                                         <th scope="col">Amount</th>
                                                         <th scope="col">Quantity</th>
                                                         <th scope="col">Updated</th>
@@ -140,7 +141,11 @@ const AdminOrder = () => {
                                                                 o?.buyer ? o?.buyer?.name : <span class="badge text-bg-danger">Deleted User</span>
                                                             }
                                                         </td>
-                                                        <td>{o?.orderNote === "" ? "---" : o?.orderNote}</td>
+                                                        <td className='fst-italic'>
+                                                            <p>
+                                                                {o?.orderNote === "" ? "---" : o?.orderNote}
+                                                            </p>
+                                                        </td>
                                                         <td>
                                                             {isUrl(o?.orderAddress) ? (
                                                                 <a href={o?.orderAddress} target="_blank" rel="noopener noreferrer">
@@ -150,7 +155,10 @@ const AdminOrder = () => {
                                                                 o?.orderAddress
                                                             )}
                                                         </td>
-                                                        <td>BDT {o?.totalAmount} </td>
+                                                        <td>
+                                                            {o?.buyer?.phone ? o?.buyer?.phone : "---"}
+                                                        </td>
+                                                        <td> <b>BDT {o?.totalAmount}</b> </td>
                                                         <td>
                                                             <span class="badge rounded-pill text-bg-warning fs-6">{o?.products?.length}</span>
                                                         </td>
