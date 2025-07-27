@@ -86,7 +86,11 @@ const Order = () => {
                             <td>{moment(o?.createdAt).format('lll')}</td>
                             <td>BDT {o?.totalAmount}</td>
                             <td>{o?.products?.length}</td>
-                            <td>{o?.orderNote === "" ? "---" : o?.orderNote}</td>
+                            <td className='fst-italic'>
+                              <p>
+                                {o?.orderNote === "" ? "---" : o?.orderNote}
+                              </p>
+                            </td>
                             <td>
                               {isUrl(o?.orderAddress) ? (
                                 <a href={o?.orderAddress} target="_blank" rel="noopener noreferrer">

@@ -17,7 +17,7 @@ const CartPage = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [locationLoading, setLocationLoading] = useState(false);
-    const [orderAddress, setOrderAddress] = useState(auth?.user?.address || '');
+    const [orderAddress, setOrderAddress] = useState(auth?.user?.address || "");
     const [orderNote, setOrderNote] = useState("");
     const [visibleOrderModal, setVisibleOrderModal] = useState(false);
     const [location, setLocation] = useState({
@@ -114,6 +114,10 @@ const CartPage = () => {
     //payment handling 
     const handleOrder = async () => {
         try {
+            if (!orderAddress) {
+                toast.error("Please set your order address.");
+                return;
+            }
             let answer = window.confirm("Are you sure you want to place this order?");
             if (!answer) return;
             setLoading(true);
@@ -224,28 +228,31 @@ const CartPage = () => {
                                                 )
                                             }
                                             type="text"
-                                            placeholder='Order Address'
+                                            placeholder="Enter delivery address"
                                             size="large"
                                             className='mb-2 w-100'
-                                            value={orderAddress || auth?.user?.address}
+                                            value={orderAddress}
                                             onChange={(e) => setOrderAddress(e.target.value)}
                                             required
                                         />
                                         <span className='text-secondary form-text'> Click <b><AimOutlined /></b>  to set your current location or update <Link to="/dashboard/user/profile">your address</Link> </span>
                                     </div>
+                                    <h6 className='fw-bold mb-3'>Note (Optional):</h6>
+
                                     <div>
                                         <textarea
                                             className='form-control'
                                             rows={3}
-                                            placeholder='Add a message (Optional)'
+                                            placeholder='Add a message'
                                             value={orderNote}
+                                            maxLength={200}
                                             onChange={(e) => setOrderNote(e.target.value)} />
                                     </div>
                                 </div>
                             ) : (
                                 <div className="mb-3">
                                     {auth?.token ? (
-                                        <button className='btn btn-outline-warning' onClick={() => navigate("/dashboard/user/profile")}>Update Address</button>
+                                        <></>
                                     ) : (
                                         <button className='btn btn-warning' onClick={() => navigate("/login", { state: "/cart" })}>Please Login to Checkout</button>
                                     )}
@@ -260,6 +267,7 @@ const CartPage = () => {
 
                                         <div className="text-center">
                                             <button
+                                                type='submit'
                                                 className='btn btn-warning px-4 py-2 fw-semibold'
                                                 onClick={handleOrder}
                                                 disabled={loading || !auth?.user?.address}
