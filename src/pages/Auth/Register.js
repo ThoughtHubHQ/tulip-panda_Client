@@ -5,6 +5,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import '../../style/AuthStyle.css';
 import Spinner from '../../components/Spinner';
+import { BarcodeOutlined } from '@ant-design/icons';
+import { Input, Spin } from 'antd';
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -12,9 +14,31 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
-    const [answer, setAnswer] = useState("");
     const [spinnerLoading, setSpinnerLoading] = useState(false);
+    const [otp, setOtp] = useState("");
+    const [otpLoading, setOtpLoading] = useState(false);
     const navigate = useNavigate();
+
+    //send otp
+    const handleOtp = async (e) => {
+        e.preventDefault();
+        const loadingToastId = toast.loading('Sending OTP...');
+        setOtpLoading(true);
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/verify-otp`, {name, email});
+            if (res && res.data.success) {
+                // Show success toast
+                toast.success(res.data && res.data.message, { id: loadingToastId });
+            } else {
+                toast.error(res.data.message, { id: loadingToastId });
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message, { id: loadingToastId });
+        }finally {
+            setOtpLoading(false);
+        }
+    }
 
     //Form Submission_handleSubmit
     const handleSubmit = async (e) => {
@@ -27,7 +51,7 @@ const Register = () => {
                 password,
                 phone,
                 address,
-                answer
+                otp
             });
             setSpinnerLoading(false);
             if (res && res.data.success) {
@@ -67,15 +91,37 @@ const Register = () => {
                                     <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="exampleInputPhone" placeholder='Phone Number' required />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='Address' required />
+                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='Full Address' required />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='What is your favorite food?' required />
+                                    <Input
+                                        prefix={
+                                            <span style={{ paddingRight: '4px' }}>
+                                                <BarcodeOutlined/>
+                                            </span>
+                                        }
+                                        addonAfter={
+                                            otpLoading ? <Spin size="small" />
+                                                : <span onClick={handleOtp} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                                                    Get OTP
+                                                </span>
+                                        }
+                                        type="text"
+                                        value={otp}
+                                        onChange={(e) => setOtp(e.target.value)}
+                                        className="w-100"
+                                        size="large"
+                                        placeholder='OTP'
+                                        minLength={6}
+                                        maxLength={6}
+                                        allowClear
+                                        required />
                                 </div>
+
                                 <div className="text-center py-4">
                                     <button type="submit" className="btn btn-primary">
                                         {spinnerLoading ? <Spinner /> : "Sign Up"}
-                                         </button>
+                                    </button>
                                 </div>
                                 <div className="text-center">Already Registered? <Link to="/login">Log In</Link></div>
                             </form>
