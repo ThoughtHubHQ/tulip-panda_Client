@@ -21,12 +21,10 @@ const AdminDashboard = () => {
                                     <p>Email: {auth?.user?.email}</p>
                                     <p>Phone: {auth?.user?.phone}</p>
                                     <p>Address: {auth?.user?.address}</p>
-                                    <h5>Role: {auth?.user?.role}</h5>
                                 </div>
                             </div>
                             <div className="col-md-6 mb-2">
                                 <div className='card h-100 p-3'>
-                                    <p className='text text-wrap'><b>Token:</b> {auth?.token}</p>
                                 </div>
                             </div>
                         </div>

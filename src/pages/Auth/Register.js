@@ -14,7 +14,6 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
-    const [answer, setAnswer] = useState("");
     const [spinnerLoading, setSpinnerLoading] = useState(false);
     const [otp, setOtp] = useState("");
     const [otpLoading, setOtpLoading] = useState(false);
@@ -52,7 +51,6 @@ const Register = () => {
                 password,
                 phone,
                 address,
-                answer,
                 otp
             });
             setSpinnerLoading(false);
@@ -93,12 +91,8 @@ const Register = () => {
                                     <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="exampleInputPhone" placeholder='Phone Number' required />
                                 </div>
                                 <div className="mb-3">
-                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='Address' required />
+                                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='Full Address' required />
                                 </div>
-                                <div className="mb-3">
-                                    <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="form-control" id="exampleInputAddress" placeholder='What is your favorite food?' required />
-                                </div>
-
                                 <div className="mb-3">
                                     <Input
                                         prefix={
